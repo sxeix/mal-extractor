@@ -1,14 +1,19 @@
 import requests
+import sys
 
-user = input()
+def main(argv):
+    user = argv[0]
 
-url = "https://api.jikan.moe/v3/user/{}/animelist/completed".format(user)
+    url = "https://api.jikan.moe/v3/user/{}/animelist/completed".format(user)
 
-response = requests.get(url)
+    response = requests.get(url)
 
-json = response.json()
+    json = response.json()
 
-animelist = json["anime"]
+    animelist = json["anime"]
 
-for anime in animelist:
-    print(anime["title"])
+    for anime in animelist:
+        print(anime["title"])
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
